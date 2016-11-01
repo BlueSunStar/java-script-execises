@@ -15,8 +15,11 @@ function createRandomBinaryArray(length){
     for (var ii = 0; ii < length; ii++){
             output.push(Math.floor(Math.random() * 2)); //get the lowest number in a set range, then output it into an array. "push is the javascript equivalent of "add" in a java arraylist
         }
+        console.log(output);
         return output;
 }
+
+createRandomBinaryArray();
 
 // creates a height and weight field, then sets those proprties on the object through a setter function
 function Field (h, w) {
@@ -35,9 +38,20 @@ Field.prototype = {
             output[counter] = createRandomBinaryArray(this.width); 
             counter++;
         }
-        this.field = output; 
+        this.field = output;
+        //console.log(output);
+    },
+    print: function (){
+        //the map method takes a function and maps it onto every element os an array
+        var printable = this.field.map(function(row){
+            return row.join('');
+        }).join('\n').replace(/0/g, ".").replace(/1/g, "%");
+        console.log(printable);
     }
-}
+    };
+
+var myField = new Field(10, 10);
+myField.print();
 
 /*
  * In java, this would look something like this:
